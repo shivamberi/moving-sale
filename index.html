@@ -102,18 +102,26 @@
       }
 
       .inventory {
+        width: 100%;
         margin: 18px 0 42px;
-        border-top: 1px solid var(--line);
+        border-collapse: collapse;
       }
-      .inventory a {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto auto;
-        align-items: center;
-        gap: 18px;
-        padding: 13px 1px;
+      .inventory th {
+        text-align: left;
+        padding: 10px 12px 10px 1px;
+        border-bottom: 2px solid var(--line);
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .inventory th:nth-child(2), .inventory td.inventory-price { text-align: right; }
+      .inventory td {
+        padding: 12px 12px 12px 1px;
         border-bottom: 1px solid var(--line);
-        text-decoration: none;
+        vertical-align: middle;
       }
+      .inventory td a { text-decoration: none; }
       .inventory-name { font-weight: 700; }
       .inventory-price {
         color: var(--muted);
@@ -121,23 +129,13 @@
         white-space: nowrap;
       }
       .inventory-state {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
         color: var(--available-text);
         font-size: 0.8rem;
         font-weight: 700;
+        white-space: nowrap;
       }
-      .inventory-state::before {
-        content: "";
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: currentColor;
-      }
-      .inventory a:hover .inventory-name,
-      .inventory a:focus-visible .inventory-name { color: var(--accent); }
-      .inventory a:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 30%, transparent); outline-offset: 3px; }
+      .inventory tbody tr:hover .inventory-name a { color: var(--accent); }
+      .inventory td a:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 30%, transparent); outline-offset: 3px; }
 
       .catalog { display: grid; gap: 28px; }
       .item-card {
@@ -495,118 +493,123 @@
         <p class="result-count" id="result-count" aria-live="polite"></p>
       </div>
 
-      <nav class="inventory" aria-label="Sale inventory">
-        <a href="#genesis">
-          <span class="inventory-name">2023 Genesis G70 3.3T — Twin-Turbo V6, 18,369 miles</span>
-          <span class="inventory-price">$36,500</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#telescope">
-          <span class="inventory-name">Apertura AD6 Telescope</span>
-          <span class="inventory-price">$300</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#sofa">
-          <span class="inventory-name">Wade Logan Azaleigh 103.5" Velvet Sofa &amp; Chaise + Ottoman — Gray</span>
-          <span class="inventory-price">$450</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#ottoman">
-          <span class="inventory-name">Naomi 48" Velvet Ottoman — Willa Arlo (Wayfair)</span>
-          <span class="inventory-price">$150</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#plants">
-          <span class="inventory-name">Plant Bundle - 8 Houseplants + Bamboo Stand + Pots</span>
-          <span class="inventory-price">$175</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#midea-ac">
-          <span class="inventory-name">Midea 8000 BTU Portable Air Conditioner with Hose, Remote, and Window Kit</span>
-          <span class="inventory-price">$125</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#cooler">
-          <span class="inventory-name">Coleman Chiller 16 Quart Cooler - Never Used</span>
-          <span class="inventory-price">$20</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#ac-bd">
-          <span class="inventory-name">BLACK+DECKER 10000 BTU Portable Air Conditioner with Remote</span>
-          <span class="inventory-price">$125</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#nightstand">
-          <span class="inventory-name">White 3-Drawer Nightstand</span>
-          <span class="inventory-price">$35</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#globe-lamp">
-          <span class="inventory-name">Brightech Luna Globe Floor Lamp, Brass</span>
-          <span class="inventory-price">$25</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#egg-chair">
-          <span class="inventory-name">Double Egg Chair Swing with Stand and Cover</span>
-          <span class="inventory-price">$100</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#magic-keyboard">
-          <span class="inventory-name">Apple Magic Keyboard (USB-C), Compact</span>
-          <span class="inventory-price">$40</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#bedroom-tv">
-          <span class="inventory-name">TCL 50 inch Android TV with Remote and Wall Mount</span>
-          <span class="inventory-price">$120</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#coastal-pair">
-          <span class="inventory-name">Coastal Watercolor Painting Pair (16×20)</span>
-          <span class="inventory-price">$40</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#pooping-print">
-          <span class="inventory-name">“Are You Pooping” Framed Cat Print (18×24)</span>
-          <span class="inventory-price">$20</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#bellet-print">
-          <span class="inventory-name">Bellet Sunset Woman Framed Print (~11×11)</span>
-          <span class="inventory-price">$15</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#buon-appetito">
-          <span class="inventory-name">Buon Appetito Framed Kitchen Print (12×16)</span>
-          <span class="inventory-price">$15</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#shoe-cabinet">
-          <span class="inventory-name">White 2-Compartment Flip-Down Shoe Cabinet</span>
-          <span class="inventory-price">$30</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#cereal-dispenser">
-          <span class="inventory-name">Bamboo Cereal Dispenser</span>
-          <span class="inventory-price">$10</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#bookshelf">
-          <span class="inventory-name">White Tall Cube Bookshelf</span>
-          <span class="inventory-price">$50</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#airwrap">
-          <span class="inventory-name">Dyson Airwrap Complete Long Straight+Wavy</span>
-          <span class="inventory-price">$400</span>
-          <span class="inventory-state">Available</span>
-        </a>
-        <a href="#panini-maker">
-          <span class="inventory-name">Chefman Panini Maker</span>
-          <span class="inventory-price">$20</span>
-          <span class="inventory-state">Available</span>
-        </a>
-      </nav>
+      <table class="inventory" aria-label="Sale inventory">
+        <thead>
+          <tr><th scope="col">Item</th><th scope="col">Price</th><th scope="col">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr data-target="genesis">
+            <td class="inventory-name"><a href="#genesis">2023 Genesis G70 3.3T — Twin-Turbo V6, 18,369 miles</a></td>
+            <td class="inventory-price">$36,500</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="telescope">
+            <td class="inventory-name"><a href="#telescope">Apertura AD6 Telescope</a></td>
+            <td class="inventory-price">$300</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="sofa">
+            <td class="inventory-name"><a href="#sofa">Wade Logan Azaleigh 103.5" Velvet Sofa &amp; Chaise + Ottoman — Gray</a></td>
+            <td class="inventory-price">$450</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="ottoman">
+            <td class="inventory-name"><a href="#ottoman">Naomi 48" Velvet Ottoman — Willa Arlo (Wayfair)</a></td>
+            <td class="inventory-price">$150</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="plants">
+            <td class="inventory-name"><a href="#plants">Plant Bundle - 8 Houseplants + Bamboo Stand + Pots</a></td>
+            <td class="inventory-price">$175</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="midea-ac">
+            <td class="inventory-name"><a href="#midea-ac">Midea 8000 BTU Portable Air Conditioner with Hose, Remote, and Window Kit</a></td>
+            <td class="inventory-price">$125</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="cooler">
+            <td class="inventory-name"><a href="#cooler">Coleman Chiller 16 Quart Cooler - Never Used</a></td>
+            <td class="inventory-price">$20</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="ac-bd">
+            <td class="inventory-name"><a href="#ac-bd">BLACK+DECKER 10000 BTU Portable Air Conditioner with Remote</a></td>
+            <td class="inventory-price">$125</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="nightstand">
+            <td class="inventory-name"><a href="#nightstand">White 3-Drawer Nightstand</a></td>
+            <td class="inventory-price">$35</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="globe-lamp">
+            <td class="inventory-name"><a href="#globe-lamp">Brightech Luna Globe Floor Lamp, Brass</a></td>
+            <td class="inventory-price">$25</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="egg-chair">
+            <td class="inventory-name"><a href="#egg-chair">Double Egg Chair Swing with Stand and Cover</a></td>
+            <td class="inventory-price">$100</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="magic-keyboard">
+            <td class="inventory-name"><a href="#magic-keyboard">Apple Magic Keyboard (USB-C), Compact</a></td>
+            <td class="inventory-price">$40</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="bedroom-tv">
+            <td class="inventory-name"><a href="#bedroom-tv">TCL 50 inch Android TV with Remote and Wall Mount</a></td>
+            <td class="inventory-price">$120</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="coastal-pair">
+            <td class="inventory-name"><a href="#coastal-pair">Coastal Watercolor Painting Pair (16×20)</a></td>
+            <td class="inventory-price">$40</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="pooping-print">
+            <td class="inventory-name"><a href="#pooping-print">“Are You Pooping” Framed Cat Print (18×24)</a></td>
+            <td class="inventory-price">$20</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="bellet-print">
+            <td class="inventory-name"><a href="#bellet-print">Bellet Sunset Woman Framed Print (~11×11)</a></td>
+            <td class="inventory-price">$15</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="buon-appetito">
+            <td class="inventory-name"><a href="#buon-appetito">Buon Appetito Framed Kitchen Print (12×16)</a></td>
+            <td class="inventory-price">$15</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="shoe-cabinet">
+            <td class="inventory-name"><a href="#shoe-cabinet">White 2-Compartment Flip-Down Shoe Cabinet</a></td>
+            <td class="inventory-price">$30</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="cereal-dispenser">
+            <td class="inventory-name"><a href="#cereal-dispenser">Bamboo Cereal Dispenser</a></td>
+            <td class="inventory-price">$10</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="bookshelf">
+            <td class="inventory-name"><a href="#bookshelf">White Tall Cube Bookshelf</a></td>
+            <td class="inventory-price">$50</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="airwrap">
+            <td class="inventory-name"><a href="#airwrap">Dyson Airwrap Complete Long Straight+Wavy</a></td>
+            <td class="inventory-price">$400</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+          <tr data-target="panini-maker">
+            <td class="inventory-name"><a href="#panini-maker">Chefman Panini Maker</a></td>
+            <td class="inventory-price">$20</td>
+            <td class="inventory-state">Available</td>
+          </tr>
+        </tbody>
+      </table>
 
       <section class="catalog" aria-label="Items for sale">
         <article class="item-card" id="genesis" data-added="2026-10-09" data-category="vehicle" data-price="36500">
@@ -1471,16 +1474,15 @@
         });
         var catalog = document.querySelector('.catalog');
         var cards = Array.prototype.slice.call(catalog.querySelectorAll('.item-card'));
-        var nav = document.querySelector('.inventory');
-        var navLinks = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+        var navBody = document.querySelector('.inventory tbody');
+        var navRows = Array.prototype.slice.call(navBody.querySelectorAll('tr'));
         var chips = document.querySelectorAll('.filter-chip');
         var sortSelect = document.getElementById('sort-select');
         var countEl = document.getElementById('result-count');
         var activeFilter = 'all';
 
-        function cardForLink(link) {
-          var id = link.getAttribute('href').slice(1);
-          return document.getElementById(id);
+        function cardForRow(row) {
+          return document.getElementById(row.getAttribute('data-target'));
         }
 
         function applyCatalog() {
@@ -1497,18 +1499,18 @@
             if (match) shown += 1;
             catalog.appendChild(card);
           });
-          navLinks.forEach(function (link) {
-            var card = cardForLink(link);
-            link.hidden = !card || card.hidden;
+          navRows.forEach(function (row) {
+            var card = cardForRow(row);
+            row.hidden = !card || card.hidden;
           });
-          var orderedLinks = navLinks.slice().sort(function (a, b) {
-            var ca = cardForLink(a), cb = cardForLink(b);
+          var orderedRows = navRows.slice().sort(function (a, b) {
+            var ca = cardForRow(a), cb = cardForRow(b);
             if (!ca || !cb) return 0;
             if (mode === 'price-asc') return (+ca.dataset.price) - (+cb.dataset.price);
             if (mode === 'price-desc') return (+cb.dataset.price) - (+ca.dataset.price);
             return cb.dataset.added.localeCompare(ca.dataset.added);
           });
-          orderedLinks.forEach(function (link) { nav.appendChild(link); });
+          orderedRows.forEach(function (row) { navBody.appendChild(row); });
           countEl.textContent = 'Showing ' + shown + ' of ' + cards.length + ' items';
         }
 
