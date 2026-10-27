@@ -419,6 +419,44 @@
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
       }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem 1rem;
+        margin: 1.25rem 0 0.25rem;
+        padding: 1rem 1.1rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+      .filter-chip {
+        border: 1px solid var(--line);
+        background: var(--surface-muted);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 0.3rem 0.85rem;
+        cursor: pointer;
+      }
+      .filter-chip.is-active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+      .sort-label { margin-left: auto; color: var(--muted); font-size: 0.95rem; }
+      .sort-label select {
+        margin-left: 0.4rem;
+        padding: 0.35rem 0.5rem;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--text);
+        font: inherit;
+        font-size: 0.95rem;
+      }
+      .result-count { flex-basis: 100%; margin: 0; color: var(--muted); font-size: 0.9rem; }
     </style>
   </head>
   <body>
@@ -428,10 +466,34 @@
           <h1>Moving Sale</h1>
           <p>Furniture, gear, and a car looking for a new home. Pickup in Lower Queen Anne, Seattle 98119.</p>
         </div>
-        <div class="summary" aria-label="Twenty-four items currently available">
-          <strong>24</strong><span>items available</span>
+        <div class="summary" aria-label="Twenty-two items currently available">
+          <strong>22</strong><span>items available</span>
         </div>
       </header>
+
+      <div class="controls">
+        <div class="filters" role="group" aria-label="Filter by category">
+          <button type="button" class="filter-chip is-active" data-filter="all">All</button>
+          <button type="button" class="filter-chip" data-filter="furniture">Furniture</button>
+          <button type="button" class="filter-chip" data-filter="electronics">Electronics</button>
+          <button type="button" class="filter-chip" data-filter="appliances">Appliances</button>
+          <button type="button" class="filter-chip" data-filter="kitchen">Kitchen</button>
+          <button type="button" class="filter-chip" data-filter="home">Home</button>
+          <button type="button" class="filter-chip" data-filter="plants">Plants</button>
+          <button type="button" class="filter-chip" data-filter="art">Art</button>
+          <button type="button" class="filter-chip" data-filter="beauty">Beauty</button>
+          <button type="button" class="filter-chip" data-filter="vehicle">Vehicle</button>
+          <button type="button" class="filter-chip" data-filter="hobbies">Hobbies</button>
+        </div>
+        <label class="sort-label">Sort by
+          <select id="sort-select">
+            <option value="recent" selected>Recently added</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+          </select>
+        </label>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+      </div>
 
       <nav class="inventory" aria-label="Sale inventory">
         <a href="#genesis">
@@ -547,7 +609,7 @@
       </nav>
 
       <section class="catalog" aria-label="Items for sale">
-        <article class="item-card" id="genesis">
+        <article class="item-card" id="genesis" data-added="2026-10-09" data-category="vehicle" data-price="36500">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="genesis-main" src="assets/img-01-781f8e3a6d.jpg" alt="Dark green 2023 Genesis G70 exterior" width="1320" height="1760" />
             <div class="thumbs" style="--count: 4" aria-label="Genesis G70 photos">
@@ -589,7 +651,7 @@
         </article>
 
 
-        <article class="item-card" id="telescope">
+        <article class="item-card" id="telescope" data-added="2026-10-09" data-category="hobbies" data-price="300">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="telescope-main" src="assets/img-06-b4b2b8dbb8.jpg" alt="Apertura AD6 Dobsonian telescope with rocker-box base" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 3" aria-label="Apertura telescope photos">
@@ -628,7 +690,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="sofa">
+        <article class="item-card" id="sofa" data-added="2026-10-19" data-category="furniture" data-price="450">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="sofa-main" src="assets/img-24-c1ee731c08.jpg" alt="Wade Logan Azaleigh velvet sofa with chaise and ottoman, front view" loading="eager" width="1100" height="825" />
             <div class="thumbs" style="--count: 4" aria-label="Sofa photos">
@@ -665,7 +727,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="ottoman">
+        <article class="item-card" id="ottoman" data-added="2026-10-21" data-category="furniture" data-price="150">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="ottoman-main" src="assets/img-27-b1da3960f8.jpg" alt="Naomi velvet ottoman top close-up showing light scuffs" loading="eager" width="825" height="1100" />
             <div class="thumbs" style="--count: 3" aria-label="Ottoman photos">
@@ -700,7 +762,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="plants">
+        <article class="item-card" id="plants" data-added="2026-10-21" data-category="plants" data-price="175">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="plants-main" src="assets/img-28-e3bdf8e690.jpg" alt="Bamboo plant stand with monstera, pothos, pilea and more houseplants" loading="eager" width="825" height="1100" />
             <div class="thumbs" style="--count: 3" aria-label="Plant bundle photos">
@@ -737,7 +799,7 @@
 
 
 
-        <article class="item-card" id="nightstand">
+        <article class="item-card" id="nightstand" data-added="2026-10-22" data-category="furniture" data-price="35">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="nightstand-main" src="assets/img-nightstand-1.jpg" alt="White 3-drawer nightstand with black knobs, front view" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 2" aria-label="Nightstand photos">
@@ -772,7 +834,7 @@
         </article>
 
 
-        <article class="item-card" id="globe-lamp">
+        <article class="item-card" id="globe-lamp" data-added="2026-10-23" data-category="home" data-price="25">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="lamp-main" src="assets/img-lamp-1.jpg" alt="Brightech Luna globe floor lamp with brass stem and frosted glass globe" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 3" aria-label="Globe floor lamp photos">
@@ -807,7 +869,7 @@
         </article>
 
 
-        <article class="item-card" id="egg-chair">
+        <article class="item-card" id="egg-chair" data-added="2026-10-24" data-category="furniture" data-price="100">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="egg-main" src="assets/img-egg-1.jpg" alt="Double wicker egg chair swing with cream cushions on its stand" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 4" aria-label="Egg chair photos">
@@ -842,7 +904,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="magic-keyboard">
+        <article class="item-card" id="magic-keyboard" data-added="2026-10-24" data-category="electronics" data-price="40">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="keyboard-main" src="assets/img-keyboard-1.jpg" alt="Apple Magic Keyboard in white and silver on its box" loading="eager" width="1760" height="1320" />
             <div class="thumbs" style="--count: 1" aria-label="Magic Keyboard photos">
@@ -875,7 +937,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="bedroom-tv">
+        <article class="item-card" id="bedroom-tv" data-added="2026-10-24" data-category="electronics" data-price="120">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="bedroom-tv-main" src="assets/img-tv-bedroom-1.jpg" alt="TCL 50 inch Android TV mounted on the wall, front view" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 3" aria-label="Bedroom TV photos">
@@ -909,7 +971,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="midea-ac">
+        <article class="item-card" id="midea-ac" data-added="2026-10-24" data-category="appliances" data-price="125">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="midea-ac-main" src="assets/img-ac-midea-1.jpg" alt="Midea portable air conditioner with exhaust hose" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 4" aria-label="Midea AC photos">
@@ -945,7 +1007,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="cooler">
+        <article class="item-card" id="cooler" data-added="2026-10-24" data-category="kitchen" data-price="20">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="cooler-main" src="assets/img-cooler-1.jpg" alt="Coleman Chiller cooler label" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 4" aria-label="Cooler photos">
@@ -981,7 +1043,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="ac-bd">
+        <article class="item-card" id="ac-bd" data-added="2026-10-24" data-category="appliances" data-price="125">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="ac-bd-main" src="assets/img-ac-bd-1.jpg" alt="BLACK+DECKER portable air conditioner front" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 5" aria-label="Black+Decker air conditioner photos">
@@ -1018,7 +1080,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="coastal-pair">
+        <article class="item-card" id="coastal-pair" data-added="2026-10-18" data-category="art" data-price="40">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="coastal-main" src="assets/img-17-1682f96c26.jpg" alt="Coastal watercolor painting with birds over the sea, first of the pair" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 2" aria-label="Coastal watercolor pair photos">
@@ -1045,7 +1107,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="pooping-print">
+        <article class="item-card" id="pooping-print" data-added="2026-10-18" data-category="art" data-price="20">
           <div class="gallery">
             <img class="hero-photo" src="assets/img-19-109fcc5434.jpg" alt="“Are You Pooping?” framed cat print" loading="eager" width="1320" height="1760" />
           </div>
@@ -1069,7 +1131,7 @@
         </article>
 
 
-        <article class="item-card" id="bellet-print">
+        <article class="item-card" id="bellet-print" data-added="2026-10-18" data-category="art" data-price="15">
           <div class="gallery">
             <img class="hero-photo" src="assets/img-21-f1dfd95d8b.jpg" alt="Bellet sunset woman framed print on a wall" loading="eager" width="1320" height="1760" />
           </div>
@@ -1092,7 +1154,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="buon-appetito">
+        <article class="item-card" id="buon-appetito" data-added="2026-10-18" data-category="art" data-price="15">
           <div class="gallery">
             <img class="hero-photo" src="assets/img-22-d0ddb6f492.jpg" alt="Buon Appetito framed kitchen print on a wall" loading="eager" width="1320" height="1760" />
           </div>
@@ -1115,7 +1177,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="shoe-cabinet">
+        <article class="item-card" id="shoe-cabinet" data-added="2026-10-24" data-category="furniture" data-price="30">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="shoe-cabinet-main" src="assets/img-shoerack-1.jpg" alt="White 2-compartment flip-down shoe cabinet, front view" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 5" aria-label="Shoe cabinet photos">
@@ -1151,7 +1213,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="cereal-dispenser">
+        <article class="item-card" id="cereal-dispenser" data-added="2026-10-24" data-category="kitchen" data-price="10">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="cereal-dispenser-main" src="assets/img-cereal-1.jpg" alt="Bamboo cereal dispenser with clear container" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 2" aria-label="Cereal dispenser photos">
@@ -1184,7 +1246,7 @@
           </div>
         </article>
 
-        <article class="item-card" id="bookshelf">
+        <article class="item-card" id="bookshelf" data-added="2026-10-25" data-category="furniture" data-price="50">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="bookshelf-main" src="assets/img-bookshelf-1.jpg" alt="White tall cube bookshelf, front view" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 6" aria-label="Bookshelf photos">
@@ -1221,7 +1283,7 @@
             </div>
           </div>
         </article>
-        <article class="item-card" id="panini-maker">
+        <article class="item-card" id="panini-maker" data-added="2026-10-26" data-category="kitchen" data-price="20">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="panini-maker-main" src="assets/img-panini-1.jpg" alt="Chefman panini maker open showing grill plates" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 2" aria-label="Panini maker photos">
@@ -1253,7 +1315,7 @@
             </div>
           </div>
         </article>
-        <article class="item-card" id="airwrap">
+        <article class="item-card" id="airwrap" data-added="2026-10-25" data-category="beauty" data-price="400">
           <div class="gallery" data-gallery>
             <img class="hero-photo" id="airwrap-main" src="assets/img-airwrap-1.jpg" alt="Dyson Airwrap set with case and attachments" loading="eager" width="1320" height="1760" />
             <div class="thumbs" style="--count: 3" aria-label="Airwrap photos">
@@ -1407,6 +1469,58 @@
             });
           });
         });
+        var catalog = document.querySelector('.catalog');
+        var cards = Array.prototype.slice.call(catalog.querySelectorAll('.item-card'));
+        var nav = document.querySelector('.inventory');
+        var navLinks = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+        var chips = document.querySelectorAll('.filter-chip');
+        var sortSelect = document.getElementById('sort-select');
+        var countEl = document.getElementById('result-count');
+        var activeFilter = 'all';
+
+        function cardForLink(link) {
+          var id = link.getAttribute('href').slice(1);
+          return document.getElementById(id);
+        }
+
+        function applyCatalog() {
+          var mode = sortSelect.value;
+          var sorted = cards.slice().sort(function (a, b) {
+            if (mode === 'price-asc') return (+a.dataset.price) - (+b.dataset.price);
+            if (mode === 'price-desc') return (+b.dataset.price) - (+a.dataset.price);
+            return b.dataset.added.localeCompare(a.dataset.added);
+          });
+          var shown = 0;
+          sorted.forEach(function (card) {
+            var match = activeFilter === 'all' || card.dataset.category === activeFilter;
+            card.hidden = !match;
+            if (match) shown += 1;
+            catalog.appendChild(card);
+          });
+          navLinks.forEach(function (link) {
+            var card = cardForLink(link);
+            link.hidden = !card || card.hidden;
+          });
+          var orderedLinks = navLinks.slice().sort(function (a, b) {
+            var ca = cardForLink(a), cb = cardForLink(b);
+            if (!ca || !cb) return 0;
+            if (mode === 'price-asc') return (+ca.dataset.price) - (+cb.dataset.price);
+            if (mode === 'price-desc') return (+cb.dataset.price) - (+ca.dataset.price);
+            return cb.dataset.added.localeCompare(ca.dataset.added);
+          });
+          orderedLinks.forEach(function (link) { nav.appendChild(link); });
+          countEl.textContent = 'Showing ' + shown + ' of ' + cards.length + ' items';
+        }
+
+        chips.forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            chips.forEach(function (other) { other.classList.toggle('is-active', other === chip); });
+            activeFilter = chip.getAttribute('data-filter');
+            applyCatalog();
+          });
+        });
+        sortSelect.addEventListener('change', applyCatalog);
+        applyCatalog();
       }());
     </script>
   </body>
