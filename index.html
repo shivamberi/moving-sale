@@ -483,13 +483,7 @@
           <button type="button" class="filter-chip" data-filter="vehicle">Vehicle</button>
           <button type="button" class="filter-chip" data-filter="hobbies">Hobbies</button>
         </div>
-        <label class="sort-label">Sort by
-          <select id="sort-select">
-            <option value="recent" selected>Recently added</option>
-            <option value="price-asc">Price: low to high</option>
-            <option value="price-desc">Price: high to low</option>
-          </select>
-        </label>
+        <span class="sort-label">Sorted by price: high to low</span>
         <p class="result-count" id="result-count" aria-live="polite"></p>
       </div>
 
@@ -1372,7 +1366,6 @@
         var navBody = document.querySelector('.inventory tbody');
         var navRows = Array.prototype.slice.call(navBody.querySelectorAll('tr'));
         var chips = document.querySelectorAll('.filter-chip');
-        var sortSelect = document.getElementById('sort-select');
         var countEl = document.getElementById('result-count');
         var activeFilter = 'all';
 
@@ -1381,7 +1374,7 @@
         }
 
         function applyCatalog() {
-          var mode = sortSelect.value;
+          var mode = 'price-desc';
           var sorted = cards.slice().sort(function (a, b) {
             if (mode === 'price-asc') return (+a.dataset.price) - (+b.dataset.price);
             if (mode === 'price-desc') return (+b.dataset.price) - (+a.dataset.price);
@@ -1416,7 +1409,6 @@
             applyCatalog();
           });
         });
-        sortSelect.addEventListener('change', applyCatalog);
         applyCatalog();
       }());
     </script>
