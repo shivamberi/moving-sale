@@ -86,14 +86,27 @@
       p { margin: 0 0 12px; }
       ul { margin: 0 0 12px; padding-left: 20px; }
       li { margin-bottom: 6px; }
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin: 12px 0 24px;
+      .carousel { position: relative; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
+      .carousel img.main { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+      .arrow {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 44px; height: 44px; border: none; border-radius: 50%;
+        background: rgba(0, 0, 0, 0.45); color: #fff; font-size: 26px; line-height: 1;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
       }
-      .gallery a { border-radius: 12px; overflow: hidden; display: block; box-shadow: var(--shadow); }
-      .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+      .arrow.prev { left: 10px; }
+      .arrow.next { right: 10px; }
+      .counter {
+        position: absolute; right: 12px; bottom: 12px;
+        background: rgba(0, 0, 0, 0.55); color: #fff;
+        padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 600;
+      }
+      .thumbs { display: flex; gap: 8px; overflow-x: auto; margin: 10px 0 0; padding-bottom: 4px; }
+      .thumbs img {
+        width: 72px; height: 54px; object-fit: cover; border-radius: 8px; cursor: pointer;
+        opacity: 0.55; border: 2px solid transparent; flex-shrink: 0;
+      }
+      .thumbs img.active { opacity: 1; border-color: var(--accent); }
       .contact {
         position: fixed;
         left: 0; right: 0; bottom: 0;
@@ -121,9 +134,13 @@
   </head>
   <body>
     <div class="page">
-      <div class="hero">
-        <img src="photos/02.jpg?v=2" alt="Living room furnished, wide shot with the grey sofa" />
+      <div class="carousel" id="carousel">
+        <img class="main" id="carousel-img" src="photos/02.jpg?v=2" alt="Living room furnished, wide shot with the grey sofa" />
+        <button class="arrow prev" id="carousel-prev" aria-label="Previous photo">&#8249;</button>
+        <button class="arrow next" id="carousel-next" aria-label="Next photo">&#8250;</button>
+        <div class="counter" id="carousel-counter">1 / 13</div>
       </div>
+      <div class="thumbs" id="carousel-thumbs"></div>
       <h1>1 bed + den, Elliott Bay views, 2 weeks rent free, Lower Queen Anne</h1>
       <p class="price">$2,975<span> / month + utilities</span></p>
       <p class="address">Latitude Apartments, 500 3rd Ave W, Apt 415, Seattle, WA 98119</p>
@@ -164,22 +181,6 @@
       <p>Walking distance to Seattle Center, Climate Pledge Arena, KEXP, Safeway, Metropolitan Market, and the Elliott Bay waterfront. Convenient for Amazon&rsquo;s South Lake Union and Denny Triangle offices.</p>
       <p>We loved living here, especially the balcony. It is easily our favorite part of the apartment, and we will miss the sunsets and views.</p>
 
-      <h2>Photos</h2>
-      <div class="gallery">
-        <a href="photos/01.jpg?v=2"><img src="photos/01.jpg?v=2" alt="Living room at sunset through the windows" loading="lazy" /></a>
-        <a href="photos/02.jpg?v=2"><img src="photos/02.jpg?v=2" alt="Living room furnished, wide shot with the grey sofa" loading="lazy" /></a>
-        <a href="photos/03.jpg?v=2"><img src="photos/03.jpg?v=2" alt="Living room daytime with plants and desk" loading="lazy" /></a>
-        <a href="photos/04.jpg?v=2"><img src="photos/04.jpg?v=2" alt="Living room in the evening, TV on" loading="lazy" /></a>
-        <a href="photos/05.jpg?v=2"><img src="photos/05.jpg?v=2" alt="Living room empty" loading="lazy" /></a>
-        <a href="photos/06.jpg?v=2"><img src="photos/06.jpg?v=2" alt="Balcony in the daytime" loading="lazy" /></a>
-        <a href="photos/07.jpg?v=2"><img src="photos/07.jpg?v=2" alt="Balcony in the daytime with the orange egg chair" loading="lazy" /></a>
-        <a href="photos/08.jpg?v=2"><img src="photos/08.jpg?v=2" alt="Kitchen, bright" loading="lazy" /></a>
-        <a href="photos/09.jpg?v=2"><img src="photos/09.jpg?v=2" alt="Bedroom empty, bright" loading="lazy" /></a>
-        <a href="photos/10.jpg?v=2"><img src="photos/10.jpg?v=2" alt="Bay sunset" loading="lazy" /></a>
-        <a href="photos/11.jpg?v=2"><img src="photos/11.jpg?v=2" alt="Street sunset" loading="lazy" /></a>
-        <a href="photos/12.jpg?v=2"><img src="photos/12.jpg?v=2" alt="Rooftop deck with grills" loading="lazy" /></a>
-        <a href="photos/13.jpg?v=2"><img src="photos/13.jpg?v=2" alt="Floor plan" loading="lazy" /></a>
-      </div>
       <p class="fb-link">Also listed on Facebook Marketplace: <a href="https://www.facebook.com/marketplace/item/2211023379485651">Sanjam&rsquo;s listing</a> &middot; <a href="https://www.facebook.com/marketplace/item/2701075250335090">Shivam&rsquo;s listing</a></p>
     </div>
 
@@ -188,5 +189,60 @@
       <a class="btn btn-primary" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
       <a class="btn btn-outline" href="https://www.facebook.com/marketplace/item/2211023379485651">View on Facebook</a>
     </div>
+    <script>
+      var slides = [
+        { src: "photos/02.jpg?v=2", alt: "Living room furnished, wide shot with the grey sofa" },
+        { src: "photos/01.jpg?v=2", alt: "Living room at sunset through the windows" },
+        { src: "photos/03.jpg?v=2", alt: "Living room daytime with plants and desk" },
+        { src: "photos/04.jpg?v=2", alt: "Living room in the evening, TV on" },
+        { src: "photos/05.jpg?v=2", alt: "Living room empty" },
+        { src: "photos/06.jpg?v=2", alt: "Balcony in the daytime" },
+        { src: "photos/07.jpg?v=2", alt: "Balcony in the daytime with the orange egg chair" },
+        { src: "photos/08.jpg?v=2", alt: "Kitchen, bright" },
+        { src: "photos/09.jpg?v=2", alt: "Bedroom empty, bright" },
+        { src: "photos/10.jpg?v=2", alt: "Bay sunset" },
+        { src: "photos/11.jpg?v=2", alt: "Street sunset" },
+        { src: "photos/12.jpg?v=2", alt: "Rooftop deck with grills" },
+        { src: "photos/13.jpg?v=2", alt: "Floor plan" }
+      ];
+      var current = 0;
+      var img = document.getElementById("carousel-img");
+      var counter = document.getElementById("carousel-counter");
+      var thumbs = document.getElementById("carousel-thumbs");
+      slides.forEach(function (s, i) {
+        var t = document.createElement("img");
+        t.src = s.src;
+        t.alt = s.alt;
+        t.addEventListener("click", function () { show(i); });
+        thumbs.appendChild(t);
+      });
+      function show(i) {
+        current = (i + slides.length) % slides.length;
+        img.src = slides[current].src;
+        img.alt = slides[current].alt;
+        counter.textContent = (current + 1) + " / " + slides.length;
+        var ts = thumbs.children;
+        for (var j = 0; j < ts.length; j++) {
+          ts[j].classList.toggle("active", j === current);
+        }
+      }
+      document.getElementById("carousel-prev").addEventListener("click", function () { show(current - 1); });
+      document.getElementById("carousel-next").addEventListener("click", function () { show(current + 1); });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") show(current - 1);
+        if (e.key === "ArrowRight") show(current + 1);
+      });
+      var touchX = null;
+      var box = document.getElementById("carousel");
+      box.addEventListener("touchstart", function (e) { touchX = e.changedTouches[0].clientX; }, { passive: true });
+      box.addEventListener("touchend", function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        if (dx < -40) show(current + 1);
+        if (dx > 40) show(current - 1);
+        touchX = null;
+      }, { passive: true });
+      show(0);
+    </script>
   </body>
 </html>
