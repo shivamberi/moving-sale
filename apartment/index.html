@@ -3,133 +3,232 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f4f2ed" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#151513" media="(prefers-color-scheme: dark)" />
-    <meta name="description" content="Lease takeover: 1 bed + den, 772 sq ft, Lower Queen Anne, Seattle. $2,975/month. Elliott Bay views, four weeks rent free." />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#faf6ee" />
+    <meta name="description" content="Lease takeover: 1 bed + den, 772 sq ft, Lower Queen Anne, Seattle. The building asks $2,975/month, our price is $2,650/month effective with up to four weeks rent free. Short 9-month lease through August 31, 2027." />
     <link rel="icon" href="data:," />
-    <title>1 bed + den, Elliott Bay views, 4 weeks rent free, Lower Queen Anne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>1 bed + den, Lower Queen Anne — $2,650/mo effective, 4 weeks rent free</title>
     <style>
       :root {
-        color-scheme: light dark;
-        --bg: #f4f2ed;
-        --surface: #fffdfa;
-        --surface-muted: #ebe8e1;
-        --text: #191916;
-        --muted: #646258;
-        --line: #d9d5ca;
-        --accent: #c8491b;
-        --accent-dark: #9f3511;
-        --on-accent: #ffffff;
-        --available-bg: #e1eedf;
-        --available-text: #1f5727;
-        --shadow: 0 14px 38px rgba(35, 31, 23, 0.08);
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #151513;
-          --surface: #1e1e1a;
-          --surface-muted: #292923;
-          --text: #f4f1e9;
-          --muted: #b9b6aa;
-          --line: #3b3a32;
-          --accent: #ef7545;
-          --accent-dark: #ff8a5d;
-          --on-accent: #241109;
-          --available-bg: #243c27;
-          --available-text: #a9dfa9;
-          --shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
-        }
+        --cream: #faf6ee;
+        --cream-2: #f3ecdc;
+        --card: #fffdf8;
+        --ink: #1e2b22;
+        --muted: #6d6f66;
+        --line: #e3dcc9;
+        --green: #1e4d2b;
+        --green-deep: #14361e;
+        --green-pill: #dfe9d2;
+        --yellow-pill: #fdf0b8;
+        --yellow-line: #ecd27a;
+        --strike: #c0392b;
+        --shadow: 0 20px 50px rgba(46, 52, 32, 0.14);
+        --shadow-sm: 0 8px 24px rgba(46, 52, 32, 0.10);
+        --radius: 24px;
       }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       body {
         margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         font-size: 16px;
-        line-height: 1.55;
+        line-height: 1.6;
+        background:
+          radial-gradient(900px 500px at 85% -5%, rgba(253, 240, 184, 0.55), rgba(253, 240, 184, 0) 60%),
+          radial-gradient(800px 480px at -10% 8%, rgba(223, 233, 210, 0.7), rgba(223, 233, 210, 0) 55%),
+          var(--cream);
       }
       img { display: block; max-width: 100%; }
       a { color: inherit; }
-      .page { max-width: 860px; margin: 0 auto; padding: 20px 16px 96px; }
-      .hero { border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
-      .hero img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-      h1 { font-size: 28px; line-height: 1.2; margin: 20px 0 6px; letter-spacing: -0.01em; }
-      .price { font-size: 22px; font-weight: 700; margin: 0 0 4px; }
-      .price span { font-size: 15px; font-weight: 500; color: var(--muted); }
-      .address { color: var(--muted); margin: 0 0 16px; }
-      .incentives {
-        background: var(--available-bg);
-        color: var(--available-text);
-        border-radius: 12px;
-        padding: 12px 16px;
-        font-weight: 600;
-        margin: 0 0 20px;
+      .page { max-width: 880px; margin: 0 auto; padding: 28px 18px 120px; }
+
+      /* ---------- Header ---------- */
+      .masthead { text-align: center; padding: 10px 8px 4px; }
+      .skyline { width: 150px; height: 46px; margin: 0 auto 2px; color: var(--green); opacity: 0.85; }
+      .eyebrow {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--green); margin: 6px 0 2px;
       }
-      .facts {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin: 0 0 24px;
+      h1 {
+        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-weight: 900; font-size: clamp(42px, 9vw, 68px); line-height: 1.02;
+        letter-spacing: -0.01em; margin: 0; color: var(--green-deep);
       }
-      .fact {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 12px 14px;
+      h1 .hl {
+        background: linear-gradient(180deg, rgba(0,0,0,0) 58%, #cfe0b8 58%, #cfe0b8 94%, rgba(0,0,0,0) 94%);
+        padding: 0 0.08em;
       }
-      .fact .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-      .fact .value { font-weight: 700; margin-top: 2px; }
-      h2 { font-size: 20px; margin: 28px 0 8px; }
-      p { margin: 0 0 12px; }
-      ul { margin: 0 0 12px; padding-left: 20px; }
-      li { margin-bottom: 6px; }
-      .carousel { position: relative; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
+      .subhead {
+        font-family: "Fraunces", Georgia, serif; font-weight: 700;
+        font-size: clamp(22px, 4.6vw, 30px); margin: 10px 0 0; color: var(--ink);
+      }
+      .subhead span { color: var(--muted); font-weight: 600; font-size: 0.72em; }
+      .address { color: var(--muted); margin: 8px 0 0; font-size: 15px; }
+
+      /* ---------- Price hero ---------- */
+      .price-hero { margin: 26px 0 0; text-align: center; }
+      .price-row {
+        display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+      }
+      .price-pill {
+        border-radius: 999px; padding: 14px 24px; font-weight: 800;
+        font-size: clamp(21px, 4.6vw, 28px); line-height: 1.1; white-space: nowrap;
+      }
+      .price-pill.old { background: var(--green-pill); color: var(--ink); }
+      .price-pill.old s { text-decoration-color: var(--strike); text-decoration-thickness: 3px; }
+      .price-pill.new {
+        background: var(--yellow-pill); color: var(--green-deep);
+        border: 2px solid var(--yellow-line); box-shadow: var(--shadow-sm);
+      }
+      .price-arrow { font-size: 30px; font-weight: 800; color: var(--green); }
+      .price-labels {
+        display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+        margin-top: 8px; font-size: 13px; color: var(--muted); font-weight: 600;
+      }
+      .price-labels span { min-width: 170px; }
+      .gift {
+        margin: 18px auto 0; max-width: 640px;
+        background: linear-gradient(135deg, #fdf0b8, #fbe89a);
+        border: 1px solid var(--yellow-line); border-radius: 999px;
+        padding: 13px 22px; font-weight: 700; font-size: clamp(15px, 3.4vw, 18px);
+        box-shadow: var(--shadow-sm);
+      }
+      .gift .gift-icon { font-size: 1.15em; }
+      .price-fine { margin-top: 10px; font-size: 13px; color: var(--muted); }
+
+      /* ---------- Lease card ---------- */
+      .lease-card {
+        margin: 26px 0 0; background: var(--card); border: 1px solid var(--line);
+        border-radius: var(--radius); box-shadow: var(--shadow-sm);
+        padding: 22px 24px; display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap;
+      }
+      .lease-badge {
+        flex-shrink: 0; background: var(--green); color: #fff; border-radius: 16px;
+        padding: 12px 16px; text-align: center; line-height: 1.15;
+      }
+      .lease-badge .big { font-family: "Fraunces", Georgia, serif; font-weight: 900; font-size: 30px; display: block; }
+      .lease-badge .small { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+      .lease-card h2 { margin: 0 0 4px; }
+      .lease-card p { margin: 0; }
+      .lease-card .lease-body { flex: 1; min-width: 240px; }
+
+      /* ---------- Carousel ---------- */
+      .carousel-wrap { margin: 26px 0 0; }
+      .carousel { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #e9e4d6; }
       .carousel img.main { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
       .arrow {
         position: absolute; top: 50%; transform: translateY(-50%);
-        width: 44px; height: 44px; border: none; border-radius: 50%;
-        background: rgba(0, 0, 0, 0.45); color: #fff; font-size: 26px; line-height: 1;
+        width: 48px; height: 48px; border: none; border-radius: 50%;
+        background: rgba(20, 54, 30, 0.72); color: #fff; font-size: 28px; line-height: 1;
         cursor: pointer; display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); transition: transform 0.15s ease, background 0.15s ease;
       }
-      .arrow.prev { left: 10px; }
-      .arrow.next { right: 10px; }
+      .arrow:hover { background: var(--green); transform: translateY(-50%) scale(1.06); }
+      .arrow.prev { left: 12px; }
+      .arrow.next { right: 12px; }
       .counter {
         position: absolute; right: 12px; bottom: 12px;
-        background: rgba(0, 0, 0, 0.55); color: #fff;
-        padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 600;
+        background: rgba(20, 54, 30, 0.78); color: #fff;
+        padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700;
       }
-      .thumbs { display: flex; gap: 8px; overflow-x: auto; margin: 10px 0 0; padding-bottom: 4px; }
+      .caption {
+        position: absolute; left: 12px; bottom: 12px;
+        background: rgba(255, 253, 248, 0.92); color: var(--ink);
+        padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+        max-width: 70%;
+      }
+      .thumbs { display: flex; gap: 8px; overflow-x: auto; margin: 12px 0 0; padding-bottom: 6px; }
       .thumbs img {
-        width: 72px; height: 54px; object-fit: cover; border-radius: 8px; cursor: pointer;
-        opacity: 0.55; border: 2px solid transparent; flex-shrink: 0;
+        width: 76px; height: 57px; object-fit: cover; border-radius: 10px; cursor: pointer;
+        opacity: 0.55; border: 2px solid transparent; flex-shrink: 0; transition: opacity 0.15s ease, border-color 0.15s ease;
       }
-      .thumbs img.active { opacity: 1; border-color: var(--accent); }
+      .thumbs img.active { opacity: 1; border-color: var(--green); }
+
+      /* ---------- Facts ---------- */
+      h2 {
+        font-family: "Fraunces", Georgia, serif; font-weight: 700;
+        font-size: clamp(24px, 5vw, 30px); line-height: 1.2; margin: 38px 0 12px; color: var(--green-deep);
+      }
+      p { margin: 0 0 12px; }
+      .facts {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0;
+      }
+      @media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+      .fact {
+        background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+        padding: 14px 16px; display: flex; gap: 12px; align-items: center;
+        box-shadow: var(--shadow-sm);
+      }
+      .fact svg { width: 26px; height: 26px; flex-shrink: 0; color: var(--green); }
+      .fact .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
+      .fact .value { font-weight: 700; margin-top: 1px; line-height: 1.35; }
+      ul { margin: 0 0 12px; padding-left: 20px; }
+      li { margin-bottom: 8px; }
+      li::marker { color: var(--green); }
+      .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+      @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+      .note-card {
+        background: var(--green-pill); border-radius: 16px; padding: 16px 20px; margin: 20px 0 0;
+        font-size: 15px;
+      }
+      .note-card strong { color: var(--green-deep); }
+
+      /* ---------- Gallery ---------- */
+      .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 6px; }
+      @media (max-width: 640px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+      .gallery figure { margin: 0; border-radius: 16px; overflow: hidden; cursor: pointer; box-shadow: var(--shadow-sm); position: relative; }
+      .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.25s ease; }
+      .gallery figure:hover img { transform: scale(1.04); }
+      .gallery figcaption {
+        position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 8px;
+        background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.55));
+        color: #fff; font-size: 12px; font-weight: 600;
+      }
+
+      /* ---------- Interested card ---------- */
+      .interested {
+        margin: 38px 0 0; background: linear-gradient(135deg, #eef3e2, #dce8cf);
+        border: 1px solid #c9d8b4; border-radius: var(--radius);
+        padding: 28px 26px; text-align: center; box-shadow: var(--shadow-sm);
+      }
+      .interested h2 {
+        font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 700;
+        font-size: clamp(30px, 6vw, 40px); margin: 0 0 6px;
+        text-decoration: underline; text-decoration-color: var(--green); text-decoration-thickness: 3px; text-underline-offset: 6px;
+      }
+      .interested p { color: #3d4a40; max-width: 520px; margin: 0 auto 20px; }
+      .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+      .btn {
+        display: inline-block; text-decoration: none; font-weight: 800; font-size: 17px;
+        border-radius: 999px; padding: 15px 30px; text-align: center;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .btn:hover { transform: translateY(-2px); }
+      .btn-primary {
+        background: linear-gradient(135deg, #2f7d3a, var(--green) 60%, var(--green-deep));
+        color: #fff; box-shadow: 0 12px 28px rgba(30, 77, 43, 0.35);
+      }
+      .btn-primary:hover { box-shadow: 0 16px 34px rgba(30, 77, 43, 0.42); }
+      .btn-soft { background: #fff; color: var(--green-deep); border: 2px solid var(--green); box-shadow: var(--shadow-sm); }
+      .fb-link { text-align: center; margin: 16px 0 0; font-size: 14px; color: var(--muted); }
+      .fb-link a { font-weight: 700; color: var(--green); }
+
+      /* ---------- Sticky contact bar ---------- */
       .contact {
-        position: fixed;
-        left: 0; right: 0; bottom: 0;
-        background: var(--surface);
+        position: fixed; left: 0; right: 0; bottom: 0;
+        background: rgba(250, 246, 238, 0.92); backdrop-filter: blur(10px);
         border-top: 1px solid var(--line);
         padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        flex-wrap: wrap;
+        display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
       }
-      .btn {
-        display: inline-block;
-        text-decoration: none;
-        font-weight: 700;
-        border-radius: 999px;
-        padding: 12px 20px;
-        text-align: center;
+      .contact .btn { padding: 12px 24px; font-size: 15px; }
+      .contact .btn-outline {
+        border: 2px solid var(--green); color: var(--green-deep); background: transparent;
       }
-      .btn-primary { background: var(--accent); color: var(--on-accent); }
-      .btn-outline { border: 1.5px solid var(--accent); color: var(--accent); background: transparent; }
-      .fb-link { text-align: center; margin: 8px 0 0; font-size: 14px; color: var(--muted); }
-      .fb-link a { font-weight: 600; }
     </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-046KS9FNZG"></script>
     <script>
@@ -141,99 +240,192 @@
   </head>
   <body>
     <div class="page">
-      <div class="carousel" id="carousel">
-        <img class="main" id="carousel-img" src="photos/01.jpg?v=3" alt="Living room furnished, wide shot with the grey sofa" />
-        <button class="arrow prev" id="carousel-prev" aria-label="Previous photo">&#8249;</button>
-        <button class="arrow next" id="carousel-next" aria-label="Next photo">&#8250;</button>
-        <div class="counter" id="carousel-counter">1 / 19</div>
-      </div>
-      <div class="thumbs" id="carousel-thumbs"></div>
-      <h1>1 bed + den, Elliott Bay views, 4 weeks rent free, Lower Queen Anne</h1>
-      <p class="price">$2,975<span> / month + utilities</span></p>
-      <p class="address">Latitude Apartments, 500 3rd Ave W, Apt 415, Seattle, WA 98119</p>
-      <p class="incentives">Move-in incentives: we will cover four weeks of rent, the $500 deposit, and the cleaning fee.</p>
+      <header class="masthead">
+        <svg class="skyline" viewBox="0 0 150 46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 42 L14 30 L22 42 M18 42 V26 h10 v16 M30 42 V18 h12 v24 M46 42 V10 h4 M48 10 L44 6 M48 10 L52 6 M50 14 h6 M50 42 V20 h8 v22 M62 42 V24 h10 v18 M76 42 V14 h4 v28 M80 42 V14 h4 v28 M78 14 L84 8 M84 42 V26 h12 v16 M100 42 V20 h10 v22 M114 42 V28 h12 v14 M130 42 V22 h12 v20 M4 42 H146" />
+          <circle cx="82" cy="6" r="2.5" />
+        </svg>
+        <p class="eyebrow">Latitude Apartments &middot; Lower Queen Anne</p>
+        <h1>Apartment<br /><span class="hl">for Rent</span></h1>
+        <p class="subhead">1 Bedroom + Den <span>&middot; 772 sq ft &middot; Elliott Bay views</span></p>
+        <p class="address">500 3rd Ave W, Apt 415, Seattle, WA 98119</p>
+      </header>
 
+      <section class="price-hero" aria-label="Price">
+        <div class="price-row">
+          <span class="price-pill old"><s>$2,975 / month</s></span>
+          <span class="price-arrow" aria-hidden="true">&rarr;</span>
+          <span class="price-pill new">$2,650 / month*</span>
+        </div>
+        <div class="price-labels">
+          <span>the building&rsquo;s price</span>
+          <span></span>
+          <span>our price, effective</span>
+        </div>
+        <p class="gift"><span class="gift-icon">&#127873;</span> Up to 4 weeks of rent and the $500 deposit on us, plus the cleaning fee!</p>
+        <p class="price-fine">*Effective rent varies by move-in date. Rent is plus utilities.</p>
+      </section>
+
+      <section class="lease-card" aria-label="Lease term">
+        <div class="lease-badge"><span class="big">9 mo</span><span class="small">short lease</span></div>
+        <div class="lease-body">
+          <h2>Short-term lease, no long commitment</h2>
+          <p>Take over the remaining 9 months of our lease, through August 31, 2027, with the building&rsquo;s approval. Move in December 2026 or January 2027. Stay for the term, or renew with the building if you love it.</p>
+        </div>
+      </section>
+
+      <section class="carousel-wrap" aria-label="Photos">
+        <div class="carousel" id="carousel">
+          <img class="main" id="carousel-img" src="photos/01.jpg?v=3" alt="Living room furnished, wide shot with the grey sofa" />
+          <button class="arrow prev" id="carousel-prev" aria-label="Previous photo">&#8249;</button>
+          <button class="arrow next" id="carousel-next" aria-label="Next photo">&#8250;</button>
+          <div class="caption" id="carousel-caption">Living room, furnished</div>
+          <div class="counter" id="carousel-counter">1 / 19</div>
+        </div>
+        <div class="thumbs" id="carousel-thumbs"></div>
+      </section>
+
+      <h2>At a glance</h2>
       <div class="facts">
-        <div class="fact"><div class="label">Size</div><div class="value">772 sq ft</div></div>
-        <div class="fact"><div class="label">Layout</div><div class="value">1 bed + den, 1 bath</div></div>
-        <div class="fact"><div class="label">Lease through</div><div class="value">August 31, 2027</div></div>
-        <div class="fact"><div class="label">Move-in</div><div class="value">December 2026 or January 2027</div></div>
-        <div class="fact"><div class="label">Parking</div><div class="value">Garage spot, $250/mo extra</div></div>
-        <div class="fact"><div class="label">Pets</div><div class="value">Allowed</div></div>
-        <div class="fact"><div class="label">Laundry</div><div class="value">In-unit washer / dryer</div></div>
-        <div class="fact"><div class="label">Furniture</div><div class="value">Sofa + bed can stay, or empty</div></div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+          <div><div class="label">Size</div><div class="value">772 sq ft</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M6 10V6h12v4"/></svg>
+          <div><div class="label">Layout</div><div class="value">1 bed + den, 1 bath</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>
+          <div><div class="label">Lease through</div><div class="value">August 31, 2027</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <div><div class="label">Move-in</div><div class="value">December 2026 or January 2027</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16l1.5-5A2 2 0 018.4 9.5h7.2a2 2 0 011.9 1.5L19 16M5 16h14M5 16v3M19 16v3M7.5 19h.01M16.5 19h.01M9 16v-2h6v2"/></svg>
+          <div><div class="label">Parking</div><div class="value">Garage spot, $250/mo extra</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="8" r="1.6"/><circle cx="12" cy="6.5" r="1.6"/><circle cx="17" cy="8" r="1.6"/><path d="M12 11c-2.8 0-5 2.2-5 4.2 0 1.5 1.1 2.6 2.6 2.6 1 0 1.7-.5 2.4-.5s1.4.5 2.4.5c1.5 0 2.6-1.1 2.6-2.6 0-2-2.2-4.2-5-4.2z"/></svg>
+          <div><div class="label">Pets</div><div class="value">Allowed</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="12" r="4.5"/><path d="M8 6.5h.01M12 6.5h.01"/></svg>
+          <div><div class="label">Laundry</div><div class="value">In-unit washer / dryer</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11V7a2 2 0 012-2h10a2 2 0 012 2v4M3 13a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4zM5 19v1M19 19v1"/></svg>
+          <div><div class="label">Furniture</div><div class="value">Sofa + bed can stay, or empty</div></div>
+        </div>
       </div>
 
-      <h2>About the apartment</h2>
-      <p>We are moving to New York and looking for someone to take over our lease at Latitude Apartments in Lower Queen Anne.</p>
-      <p>This apartment is listed by the current resident, not the building&rsquo;s leasing office. Taking it over means assuming the remaining lease through August 31, 2027, with the building&rsquo;s approval.</p>
-      <ul>
-        <li>Spacious, south-facing balcony, bigger than most, with room for outdoor furniture and plants</li>
-        <li>Elliott Bay views from both the living room and the balcony</li>
-        <li>Partial Space Needle view from the apartment, and a full view from the rooftop, great for New Year&rsquo;s fireworks</li>
-        <li>Open kitchen and living room with a breakfast bar</li>
-        <li>Separate den, perfect for a home office</li>
-        <li>Walk-in closet</li>
-        <li>In-unit washer and dryer in a dedicated laundry room, plus dishwasher and garbage disposal</li>
-        <li>South-facing, plenty of natural light</li>
-      </ul>
+      <div class="two-col">
+        <div>
+          <h2>About the apartment</h2>
+          <p>We are moving to New York and looking for someone to take over our lease at Latitude Apartments in Lower Queen Anne.</p>
+          <ul>
+            <li>Spacious, south-facing balcony, bigger than most, with room for outdoor furniture and plants</li>
+            <li>Elliott Bay views from both the living room and the balcony</li>
+            <li>Partial Space Needle view from the apartment, and a full view from the rooftop, great for New Year&rsquo;s fireworks</li>
+            <li>Open kitchen and living room with a breakfast bar</li>
+            <li>Separate den, perfect for a home office</li>
+            <li>Walk-in closet</li>
+            <li>In-unit washer and dryer in a dedicated laundry room, plus dishwasher and garbage disposal</li>
+            <li>South-facing, plenty of natural light</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Building amenities</h2>
+          <ul>
+            <li>24-hour gym and resident lounge</li>
+            <li>Bike storage</li>
+            <li>Rooftop terrace with grills and outdoor seating</li>
+          </ul>
+          <h2>Location</h2>
+          <p>Walking distance to Seattle Center, Climate Pledge Arena, KEXP, Safeway, Metropolitan Market, and the Elliott Bay waterfront. Convenient for Amazon&rsquo;s South Lake Union and Denny Triangle offices.</p>
+          <p>We loved living here, especially the balcony. It is easily our favorite part of the apartment, and we will miss the sunsets and views.</p>
+        </div>
+      </div>
 
-      <h2>Building amenities</h2>
-      <ul>
-        <li>24-hour gym and resident lounge</li>
-        <li>Bike storage</li>
-        <li>Rooftop terrace with grills and outdoor seating</li>
-      </ul>
+      <div class="note-card">
+        <strong>Listed by the current resident,</strong> not the building&rsquo;s leasing office. Taking it over means assuming the remaining lease through August 31, 2027, with the building&rsquo;s approval.
+      </div>
 
-      <h2>Location</h2>
-      <p>Walking distance to Seattle Center, Climate Pledge Arena, KEXP, Safeway, Metropolitan Market, and the Elliott Bay waterfront. Convenient for Amazon&rsquo;s South Lake Union and Denny Triangle offices.</p>
-      <p>We loved living here, especially the balcony. It is easily our favorite part of the apartment, and we will miss the sunsets and views.</p>
+      <h2>All the photos</h2>
+      <div class="gallery" id="gallery"></div>
 
-      <p class="fb-link">Also listed on Facebook Marketplace: <a href="https://www.facebook.com/marketplace/item/2211023379485651">Sanjam&rsquo;s listing</a> &middot; <a href="https://www.facebook.com/marketplace/item/2701075250335090">Shivam&rsquo;s listing</a></p>
+      <section class="interested" aria-label="Contact">
+        <h2>Interested?</h2>
+        <p>Come take a look. We show the place ourselves and we are around this weekend. Text or WhatsApp us and we will set up a tour.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="sms:+12068025576?body=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">Text us</a>
+          <a class="btn btn-soft" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
+        </div>
+        <p class="fb-link">Also listed on Facebook Marketplace: <a href="https://www.facebook.com/marketplace/item/2211023379485651">Sanjam&rsquo;s listing</a> &middot; <a href="https://www.facebook.com/marketplace/item/2701075250335090">Shivam&rsquo;s listing</a></p>
+      </section>
     </div>
 
     <div class="contact">
       <a class="btn btn-primary" href="sms:+12068025576?body=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">Text us</a>
-      <a class="btn btn-primary" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
+      <a class="btn btn-soft btn-outline" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
       <a class="btn btn-outline" href="https://www.facebook.com/marketplace/item/2211023379485651">View on Facebook</a>
     </div>
     <script>
       var slides = [
-        { src: "photos/01.jpg?v=3", alt: "Living room furnished, wide shot with the grey sofa" },
-        { src: "photos/02.jpg?v=3", alt: "Living room at sunset through the windows" },
-        { src: "photos/03.jpg?v=3", alt: "Living room daytime with plants and desk" },
-        { src: "photos/04.jpg?v=3", alt: "Bedroom furnished with the wood bed frame" },
-        { src: "photos/05.jpg?v=3", alt: "Living room and kitchen, furnished" },
-        { src: "photos/06.jpg?v=3", alt: "Kitchen, furnished" },
-        { src: "photos/07.jpg?v=3", alt: "Bathroom with tub" },
-        { src: "photos/08.jpg?v=3", alt: "Den set up as a home office" },
-        { src: "photos/09.jpg?v=3", alt: "Walk-in closet" },
-        { src: "photos/10.jpg?v=3", alt: "Laundry room with washer and dryer" },
-        { src: "photos/11.jpg?v=3", alt: "Living room empty" },
-        { src: "photos/12.jpg?v=3", alt: "Balcony in the daytime" },
-        { src: "photos/13.jpg?v=3", alt: "Balcony in the daytime with the orange egg chair" },
-        { src: "photos/14.jpg?v=3", alt: "Kitchen, bright" },
-        { src: "photos/15.jpg?v=3", alt: "Bedroom empty, bright" },
-        { src: "photos/16.jpg?v=3", alt: "Bay sunset" },
-        { src: "photos/17.jpg?v=3", alt: "Street sunset" },
-        { src: "photos/18.jpg?v=3", alt: "Rooftop deck with grills" },
-        { src: "photos/19.jpg?v=3", alt: "Floor plan" }
+        { src: "photos/01.jpg?v=3", alt: "Living room furnished, wide shot with the grey sofa", cap: "Living room, furnished" },
+        { src: "photos/02.jpg?v=3", alt: "Living room at sunset through the windows", cap: "Living room at sunset" },
+        { src: "photos/03.jpg?v=3", alt: "Living room daytime with plants and desk", cap: "Living room, daytime" },
+        { src: "photos/04.jpg?v=3", alt: "Bedroom furnished with the wood bed frame", cap: "Bedroom, furnished" },
+        { src: "photos/05.jpg?v=3", alt: "Living room and kitchen, furnished", cap: "Living room and kitchen" },
+        { src: "photos/06.jpg?v=3", alt: "Kitchen, furnished", cap: "Kitchen" },
+        { src: "photos/07.jpg?v=3", alt: "Bathroom with tub", cap: "Bathroom" },
+        { src: "photos/08.jpg?v=3", alt: "Den set up as a home office", cap: "Den, set up as an office" },
+        { src: "photos/09.jpg?v=3", alt: "Walk-in closet", cap: "Walk-in closet" },
+        { src: "photos/10.jpg?v=3", alt: "Laundry room with washer and dryer", cap: "Laundry room" },
+        { src: "photos/11.jpg?v=3", alt: "Living room empty", cap: "Living room, empty" },
+        { src: "photos/12.jpg?v=3", alt: "Balcony in the daytime", cap: "Balcony, daytime" },
+        { src: "photos/13.jpg?v=3", alt: "Balcony in the daytime with the orange egg chair", cap: "Balcony, daytime" },
+        { src: "photos/14.jpg?v=3", alt: "Kitchen, bright", cap: "Kitchen, bright" },
+        { src: "photos/15.jpg?v=3", alt: "Bedroom empty, bright", cap: "Bedroom, empty" },
+        { src: "photos/16.jpg?v=3", alt: "Bay sunset", cap: "Elliott Bay sunset" },
+        { src: "photos/17.jpg?v=3", alt: "Street sunset", cap: "Sunset from the street" },
+        { src: "photos/18.jpg?v=3", alt: "Rooftop deck with grills", cap: "Rooftop deck" },
+        { src: "photos/19.jpg?v=3", alt: "Floor plan", cap: "Floor plan" }
       ];
       var current = 0;
       var img = document.getElementById("carousel-img");
       var counter = document.getElementById("carousel-counter");
+      var caption = document.getElementById("carousel-caption");
       var thumbs = document.getElementById("carousel-thumbs");
+      var gallery = document.getElementById("gallery");
       slides.forEach(function (s, i) {
         var t = document.createElement("img");
         t.src = s.src;
         t.alt = s.alt;
         t.addEventListener("click", function () { show(i); });
         thumbs.appendChild(t);
+        var fig = document.createElement("figure");
+        var g = document.createElement("img");
+        g.src = s.src;
+        g.alt = s.alt;
+        g.loading = "lazy";
+        var fc = document.createElement("figcaption");
+        fc.textContent = s.cap;
+        fig.appendChild(g);
+        fig.appendChild(fc);
+        fig.addEventListener("click", function () {
+          show(i);
+          document.getElementById("carousel").scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+        gallery.appendChild(fig);
       });
       function show(i) {
         current = (i + slides.length) % slides.length;
         img.src = slides[current].src;
         img.alt = slides[current].alt;
+        caption.textContent = slides[current].cap;
         counter.textContent = (current + 1) + " / " + slides.length;
         var ts = thumbs.children;
         for (var j = 0; j < ts.length; j++) {
