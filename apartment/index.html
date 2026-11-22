@@ -251,7 +251,7 @@
         <p class="address">500 3rd Ave W, Apt 415, Seattle, WA 98119</p>
       </header>
 
-      <section class="price-hero" aria-label="Price">
+      <section class="price-hero" id="section-price" aria-label="Price">
         <div class="price-row">
           <span class="price-pill old"><s>$2,975 / month</s></span>
           <span class="price-arrow" aria-hidden="true">&rarr;</span>
@@ -266,7 +266,7 @@
         <p class="price-fine">*Effective rent varies by move-in date. Rent is plus utilities.</p>
       </section>
 
-      <section class="lease-card" aria-label="Lease term">
+      <section class="lease-card" id="section-lease" aria-label="Lease term">
         <div class="lease-badge"><span class="big">9 mo</span><span class="small">short lease</span></div>
         <div class="lease-body">
           <h2>Short-term lease, no long commitment</h2>
@@ -274,11 +274,11 @@
         </div>
       </section>
 
-      <section class="carousel-wrap" aria-label="Photos">
+      <section class="carousel-wrap" id="section-photos" aria-label="Photos">
         <div class="carousel" id="carousel">
           <img class="main" id="carousel-img" src="photos/01.jpg?v=3" alt="Living room furnished, wide shot with the grey sofa" />
-          <button class="arrow prev" id="carousel-prev" aria-label="Previous photo">&#8249;</button>
-          <button class="arrow next" id="carousel-next" aria-label="Next photo">&#8250;</button>
+          <button class="arrow prev" id="carousel-prev" data-track="carousel_arrow" data-direction="prev" aria-label="Previous photo">&#8249;</button>
+          <button class="arrow next" id="carousel-next" data-track="carousel_arrow" data-direction="next" aria-label="Next photo">&#8250;</button>
           <div class="caption" id="carousel-caption">Living room, furnished</div>
           <div class="counter" id="carousel-counter">1 / 19</div>
         </div>
@@ -286,7 +286,7 @@
       </section>
 
       <h2>At a glance</h2>
-      <div class="facts">
+      <div class="facts" id="section-facts">
         <div class="fact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
           <div><div class="label">Size</div><div class="value">772 sq ft</div></div>
@@ -321,7 +321,7 @@
         </div>
       </div>
 
-      <div class="two-col">
+      <div class="two-col" id="section-about">
         <div>
           <h2>About the apartment</h2>
           <p>We are moving to New York and looking for someone to take over our lease at Latitude Apartments in Lower Queen Anne.</p>
@@ -356,21 +356,21 @@
       <h2>All the photos</h2>
       <div class="gallery" id="gallery"></div>
 
-      <section class="interested" aria-label="Contact">
+      <section class="interested" id="section-contact" aria-label="Contact">
         <h2>Interested?</h2>
         <p>Come take a look. We show the place ourselves and we are around this weekend. Text or WhatsApp us and we will set up a tour.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="sms:+12068025576?body=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">Text us</a>
-          <a class="btn btn-soft" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
+          <a class="btn btn-primary" data-track="contact_click" data-method="text" data-location="interested_card" href="sms:+12068025576?body=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">Text us</a>
+          <a class="btn btn-soft" data-track="contact_click" data-method="whatsapp" data-location="interested_card" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
         </div>
-        <p class="fb-link">Also listed on Facebook Marketplace: <a href="https://www.facebook.com/marketplace/item/2211023379485651">Sanjam&rsquo;s listing</a> &middot; <a href="https://www.facebook.com/marketplace/item/2701075250335090">Shivam&rsquo;s listing</a></p>
+        <p class="fb-link">Also listed on Facebook Marketplace: <a data-track="contact_click" data-method="facebook" data-location="interested_card" href="https://www.facebook.com/marketplace/item/2211023379485651">Sanjam&rsquo;s listing</a> &middot; <a data-track="contact_click" data-method="facebook" data-location="interested_card" href="https://www.facebook.com/marketplace/item/2701075250335090">Shivam&rsquo;s listing</a></p>
       </section>
     </div>
 
     <div class="contact">
-      <a class="btn btn-primary" href="sms:+12068025576?body=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">Text us</a>
-      <a class="btn btn-soft btn-outline" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
-      <a class="btn btn-outline" href="https://www.facebook.com/marketplace/item/2211023379485651">View on Facebook</a>
+      <a class="btn btn-primary" data-track="contact_click" data-method="text" data-location="sticky_bar" href="sms:+12068025576?body=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">Text us</a>
+      <a class="btn btn-soft btn-outline" data-track="contact_click" data-method="whatsapp" data-location="sticky_bar" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
+      <a class="btn btn-outline" data-track="contact_click" data-method="facebook" data-location="sticky_bar" href="https://www.facebook.com/marketplace/item/2211023379485651">View on Facebook</a>
     </div>
     <script>
       var slides = [
@@ -381,7 +381,7 @@
         { src: "photos/05.jpg?v=3", alt: "Living room and kitchen, furnished", cap: "Living room and kitchen" },
         { src: "photos/06.jpg?v=3", alt: "Kitchen, furnished", cap: "Kitchen" },
         { src: "photos/07.jpg?v=3", alt: "Bathroom with tub", cap: "Bathroom" },
-        { src: "photos/08.jpg?v=3", alt: "Den set up as a home office", cap: "Den, set up as an office" },
+        { src: "photos/08.jpg?v=3", alt: "Bedroom desk corner, with the Hokusai print and the telescope on the balcony", cap: "Bedroom, desk corner" },
         { src: "photos/09.jpg?v=3", alt: "Walk-in closet", cap: "Walk-in closet" },
         { src: "photos/10.jpg?v=3", alt: "Laundry room with washer and dryer", cap: "Laundry room" },
         { src: "photos/11.jpg?v=3", alt: "Living room empty", cap: "Living room, empty" },
@@ -404,9 +404,13 @@
         var t = document.createElement("img");
         t.src = s.src;
         t.alt = s.alt;
+        t.setAttribute("data-track", "carousel_thumb");
+        t.setAttribute("data-photo", s.cap);
         t.addEventListener("click", function () { show(i); });
         thumbs.appendChild(t);
         var fig = document.createElement("figure");
+        fig.setAttribute("data-track", "gallery_photo");
+        fig.setAttribute("data-photo", s.cap);
         var g = document.createElement("img");
         g.src = s.src;
         g.alt = s.alt;
@@ -449,6 +453,98 @@
         touchX = null;
       }, { passive: true });
       show(0);
+    </script>
+    <script>
+      // Free analytics: every click, scroll depth, and time per section, into GA4 (G-046KS9FNZG).
+      // Where to read it: GA4 > Reports > Engagement > Events (contact_click, scroll_depth,
+      // section_time, carousel_arrow, carousel_thumb, gallery_photo), and Realtime for live views.
+      (function () {
+        function track(name, params) {
+          if (typeof gtag === "function") { gtag("event", name, params || {}); }
+        }
+
+        // 1. Clicks: any element with data-track. Contact buttons carry method + location.
+        document.addEventListener("click", function (e) {
+          var el = e.target.closest("[data-track]");
+          if (!el) return;
+          var kind = el.getAttribute("data-track");
+          if (kind === "contact_click") {
+            track("contact_click", {
+              method: el.getAttribute("data-method"),
+              location: el.getAttribute("data-location"),
+              link_text: (el.textContent || "").trim().slice(0, 40)
+            });
+          } else if (kind === "carousel_arrow") {
+            track("carousel_arrow", { direction: el.getAttribute("data-direction") });
+          } else if (kind === "carousel_thumb" || kind === "gallery_photo") {
+            track(kind, { photo: el.getAttribute("data-photo") });
+          }
+        });
+
+        // 2. Scroll depth: fire once each at 25 / 50 / 75 / 90 / 100 percent.
+        var depths = [25, 50, 75, 90, 100];
+        var fired = {};
+        function checkDepth() {
+          var doc = document.documentElement;
+          var total = doc.scrollHeight - window.innerHeight;
+          if (total <= 0) return;
+          var pct = Math.round((window.scrollY / total) * 100);
+          depths.forEach(function (d) {
+            if (pct >= d && !fired[d]) {
+              fired[d] = true;
+              track("scroll_depth", { percent: d });
+            }
+          });
+        }
+        window.addEventListener("scroll", checkDepth, { passive: true });
+        checkDepth();
+
+        // 3. Time per section: accumulate visible seconds per section, send on page exit.
+        var sections = [
+          { id: "section-price", name: "price" },
+          { id: "section-lease", name: "lease_term" },
+          { id: "section-photos", name: "photo_carousel" },
+          { id: "section-facts", name: "facts" },
+          { id: "section-about", name: "about" },
+          { id: "gallery", name: "photo_gallery" },
+          { id: "section-contact", name: "contact" }
+        ];
+        var seen = {};
+        sections.forEach(function (s) { seen[s.id] = { name: s.name, seconds: 0, since: null }; });
+        var observer = new IntersectionObserver(function (entries) {
+          var now = Date.now();
+          entries.forEach(function (entry) {
+            var rec = seen[entry.target.id];
+            if (!rec) return;
+            if (entry.isIntersecting) {
+              if (rec.since === null) rec.since = now;
+            } else if (rec.since !== null) {
+              rec.seconds += (now - rec.since) / 1000;
+              rec.since = null;
+            }
+          });
+        }, { threshold: 0.3 });
+        sections.forEach(function (s) {
+          var el = document.getElementById(s.id);
+          if (el) observer.observe(el);
+        });
+        function sendSectionTimes() {
+          var now = Date.now();
+          Object.keys(seen).forEach(function (id) {
+            var rec = seen[id];
+            var total = rec.seconds + (rec.since !== null ? (now - rec.since) / 1000 : 0);
+            if (total >= 1) {
+              track("section_time", { section: rec.name, seconds: Math.round(total) });
+            }
+            rec.seconds = 0;
+            rec.since = null;
+          });
+        }
+        window.addEventListener("pagehide", sendSectionTimes);
+        document.addEventListener("visibilitychange", function () {
+          if (document.visibilityState === "hidden") sendSectionTimes();
+        });
+      })();
     </script>
   </body>
 </html>
