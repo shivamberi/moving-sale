@@ -85,11 +85,13 @@
         border: 2px solid var(--yellow-line); box-shadow: var(--shadow-sm);
       }
       .price-arrow { font-size: 30px; font-weight: 800; color: var(--green); }
-      .price-labels {
-        display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
-        margin-top: 8px; font-size: 13px; color: var(--muted); font-weight: 600;
+      .price-item { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+      .price-label { font-size: 13px; color: var(--muted); font-weight: 600; }
+      @media (max-width: 560px) {
+        .price-row { flex-direction: column; gap: 2px; }
+        .price-arrow { transform: rotate(90deg); font-size: 26px; }
+        .gift { border-radius: 18px; }
       }
-      .price-labels span { min-width: 170px; }
       .gift {
         margin: 18px auto 0; max-width: 640px;
         background: linear-gradient(135deg, #fdf0b8, #fbe89a);
@@ -147,6 +149,34 @@
         opacity: 0.55; border: 2px solid transparent; flex-shrink: 0; transition: opacity 0.15s ease, border-color 0.15s ease;
       }
       .thumbs img.active { opacity: 1; border-color: var(--green); }
+      .carousel img.main { cursor: zoom-in; }
+      .tap-hint { text-align: center; font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+
+      /* ---------- Lightbox ---------- */
+      .lightbox {
+        position: fixed; inset: 0; z-index: 100; display: none;
+        align-items: center; justify-content: center;
+        background: rgba(15, 25, 18, 0.93); padding: 20px;
+      }
+      .lightbox.open { display: flex; }
+      .lightbox img { max-width: 100%; max-height: 82vh; border-radius: 16px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
+      .lb-close {
+        position: absolute; top: 14px; right: 16px; width: 46px; height: 46px;
+        border: none; border-radius: 50%; background: rgba(255, 255, 255, 0.18); color: #fff;
+        font-size: 30px; line-height: 1; cursor: pointer;
+      }
+      .lb-arrow {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 48px; height: 48px; border: none; border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18); color: #fff; font-size: 28px; line-height: 1; cursor: pointer;
+      }
+      .lb-arrow.prev { left: 12px; }
+      .lb-arrow.next { right: 12px; }
+      .lb-meta {
+        position: absolute; bottom: 16px; left: 0; right: 0; text-align: center;
+        color: #fff; font-size: 14px; font-weight: 600;
+      }
+      .lb-meta span + span { margin-left: 12px; opacity: 0.75; }
 
       /* ---------- Facts ---------- */
       h2 {
@@ -253,16 +283,17 @@
 
       <section class="price-hero" id="section-price" aria-label="Price">
         <div class="price-row">
-          <span class="price-pill old"><s>$2,975 / month</s></span>
+          <div class="price-item">
+            <span class="price-pill old"><s>$2,975 / month</s></span>
+            <span class="price-label">the building&rsquo;s price</span>
+          </div>
           <span class="price-arrow" aria-hidden="true">&rarr;</span>
-          <span class="price-pill new">$2,650 / month*</span>
+          <div class="price-item">
+            <span class="price-pill new">$2,650 / month*</span>
+            <span class="price-label">our price, effective</span>
+          </div>
         </div>
-        <div class="price-labels">
-          <span>the building&rsquo;s price</span>
-          <span></span>
-          <span>our price, effective</span>
-        </div>
-        <p class="gift"><span class="gift-icon">&#127873;</span> Up to 4 weeks of rent and the $500 deposit on us, plus the cleaning fee!</p>
+        <p class="gift"><span class="gift-icon">&#127873;</span> Up to 4 weeks of rent and the $500 deposit on us!</p>
         <p class="price-fine">*Effective rent varies by move-in date. Rent is plus utilities.</p>
       </section>
 
@@ -276,13 +307,14 @@
 
       <section class="carousel-wrap" id="section-photos" aria-label="Photos">
         <div class="carousel" id="carousel">
-          <img class="main" id="carousel-img" src="photos/01.jpg?v=3" alt="Living room furnished, wide shot with the grey sofa" />
+          <img class="main" id="carousel-img" data-track="carousel_main" data-photo="Living room, furnished" src="photos/01.jpg?v=3" alt="Living room furnished, wide shot with the grey sofa" />
           <button class="arrow prev" id="carousel-prev" data-track="carousel_arrow" data-direction="prev" aria-label="Previous photo">&#8249;</button>
           <button class="arrow next" id="carousel-next" data-track="carousel_arrow" data-direction="next" aria-label="Next photo">&#8250;</button>
           <div class="caption" id="carousel-caption">Living room, furnished</div>
           <div class="counter" id="carousel-counter">1 / 19</div>
         </div>
         <div class="thumbs" id="carousel-thumbs"></div>
+        <p class="tap-hint">Tap any photo to view it larger</p>
       </section>
 
       <h2>At a glance</h2>
@@ -367,6 +399,13 @@
       </section>
     </div>
 
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lb-close" id="lb-close" aria-label="Close photo viewer">&times;</button>
+      <button class="lb-arrow prev" id="lb-prev" aria-label="Previous photo">&#8249;</button>
+      <img id="lb-img" src="" alt="" />
+      <button class="lb-arrow next" id="lb-next" aria-label="Next photo">&#8250;</button>
+      <div class="lb-meta"><span id="lb-caption"></span><span id="lb-counter"></span></div>
+    </div>
     <div class="contact">
       <a class="btn btn-primary" data-track="contact_click" data-method="text" data-location="sticky_bar" href="sms:+12068025576?body=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">Text us</a>
       <a class="btn btn-soft btn-outline" data-track="contact_click" data-method="whatsapp" data-location="sticky_bar" href="https://wa.me/12068025576?text=Hi%2C%20I%27m%20interested%20in%20the%20apartment%20at%20Latitude%2C%20500%203rd%20Ave%20W.%20Is%20it%20still%20available%3F">WhatsApp us</a>
@@ -419,16 +458,14 @@
         fc.textContent = s.cap;
         fig.appendChild(g);
         fig.appendChild(fc);
-        fig.addEventListener("click", function () {
-          show(i);
-          document.getElementById("carousel").scrollIntoView({ behavior: "smooth", block: "center" });
-        });
+        fig.addEventListener("click", function () { openLightbox(i); });
         gallery.appendChild(fig);
       });
       function show(i) {
         current = (i + slides.length) % slides.length;
         img.src = slides[current].src;
         img.alt = slides[current].alt;
+        img.setAttribute("data-photo", slides[current].cap);
         caption.textContent = slides[current].cap;
         counter.textContent = (current + 1) + " / " + slides.length;
         var ts = thumbs.children;
@@ -439,6 +476,7 @@
       document.getElementById("carousel-prev").addEventListener("click", function () { show(current - 1); });
       document.getElementById("carousel-next").addEventListener("click", function () { show(current + 1); });
       document.addEventListener("keydown", function (e) {
+        if (lightbox && lightbox.classList.contains("open")) return;
         if (e.key === "ArrowLeft") show(current - 1);
         if (e.key === "ArrowRight") show(current + 1);
       });
@@ -452,6 +490,37 @@
         if (dx > 40) show(current - 1);
         touchX = null;
       }, { passive: true });
+      var lightbox = document.getElementById("lightbox");
+      var lbImg = document.getElementById("lb-img");
+      var lbCaption = document.getElementById("lb-caption");
+      var lbCounter = document.getElementById("lb-counter");
+      function openLightbox(i) {
+        current = (i + slides.length) % slides.length;
+        lbImg.src = slides[current].src;
+        lbImg.alt = slides[current].alt;
+        lbCaption.textContent = slides[current].cap;
+        lbCounter.textContent = (current + 1) + " / " + slides.length;
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        show(current);
+      }
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+      img.addEventListener("click", function () { openLightbox(current); });
+      document.getElementById("lb-close").addEventListener("click", closeLightbox);
+      document.getElementById("lb-prev").addEventListener("click", function () { openLightbox(current - 1); });
+      document.getElementById("lb-next").addEventListener("click", function () { openLightbox(current + 1); });
+      lightbox.addEventListener("click", function (e) { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener("keydown", function (e) {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") openLightbox(current - 1);
+        if (e.key === "ArrowRight") openLightbox(current + 1);
+      });
       show(0);
     </script>
     <script>
@@ -476,7 +545,7 @@
             });
           } else if (kind === "carousel_arrow") {
             track("carousel_arrow", { direction: el.getAttribute("data-direction") });
-          } else if (kind === "carousel_thumb" || kind === "gallery_photo") {
+          } else if (kind === "carousel_thumb" || kind === "gallery_photo" || kind === "carousel_main") {
             track(kind, { photo: el.getAttribute("data-photo") });
           }
         });
